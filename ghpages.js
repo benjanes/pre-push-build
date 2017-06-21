@@ -17,19 +17,21 @@ fs.readFile('./indexTpl.html', 'utf8', (err, data) => {
 		// 		simpleGit.checkout('gh-pages');
 		// 	}
 		// })
-		.checkout('gh-pages')
+		.checkout('gh-pages', () => {
+			
+			fs.writeFile('./index.html', file, () => {
+				console.log(file);
+
+				// simpleGit
+				// 	.add('.')
+				// 	.commit('Redeploy for commit ' + commitHash + ' to master')
+					// .push('origin', 'gh-pages', { '--no-verify': null });
+				
+			})
+		})
 		// only if gh-pages exists in remote, pull it
-		.pull('origin', 'gh-pages');
+		// .pull('origin', 'gh-pages');
 
-	fs.writeFile('./index.html', file, () => {
-		console.log(file);
-
-		simpleGit
-			.add('.')
-			.commit('Redeploy for commit ' + commitHash + ' to master')
-			// .push('origin', 'gh-pages', { '--no-verify': null });
-		
-	})
 })
 
 
