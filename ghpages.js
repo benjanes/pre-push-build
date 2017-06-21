@@ -23,6 +23,7 @@ simpleGit
 	// })
 	.add('.')
 	.commit('Redeploy for commit ' + commitHash + ' to master')
+	.push('origin', 'gh-pages');
 	// push to origin/gh-pages
 	// checkout master
 	// if you don't do anything, does it exit with a push?

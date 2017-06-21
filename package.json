@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "prepush": "node ghpages.js && exit 0"
+    "prepush": "node ghpages.js"
   },
   "author": "Ben Janes",
   "license": "ISC",
