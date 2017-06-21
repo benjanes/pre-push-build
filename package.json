@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node ghpages.js && exit 1",
+    "test": "node ghpages.js && exit 0",
     "ghpages": "node ghpages.js"
   },
   "pre-push": [
-    "ghpages"
+    "test"
   ],
   "author": "Ben Janes",
   "license": "ISC",
