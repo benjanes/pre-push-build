@@ -1,15 +1,27 @@
 var simpleGit = require('simple-git')();
 
-simpleGit.branch((err,branches) => {
-	console.log(branches);
-});
+var commitHash;
 
-// create a deploy directory in memory
+// create a deploy dir in memory
 
-// checkout gh-pages branch, if it exists
-// pull down from origin/gh-pages
-// delete everything in the dir (except for node_modules, this script, etc)
+simpleGit
+	.branch((err,branches) => {
+		commitHash = branches.branches.master.commit;
 
-// copy the deploy directory into the dir
+		if (!~branches.all.indexOf('gh-pages')) {
+			simpleGit.checkoutLocalBranch('gh-pages');
+		} else {
+			simpleGit.checkout('gh-pages');
+		}
+	})
+	.pull('origin', 'gh-pages', () => {
+		// delete files
 
-// commit, then push to origin/gh-pages
+		// add files
+
+	})
+	.add('.')
+	.commit('Redeploy for commit ' + commitHash + ' to master')
+	// push to origin/gh-pages
+	// checkout master
+	// if you don't do anything, does it exit with a push?
