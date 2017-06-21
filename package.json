@@ -1,0 +1,19 @@
+{
+  "name": "auto-stage",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "ghpages": "node ghpages.js"
+  },
+  "pre-push": [
+    "ghpages"
+  ],
+  "author": "Ben Janes",
+  "license": "ISC",
+  "devDependencies": {
+    "pre-push": "^0.1.1",
+    "simple-git": "^1.73.0"
+  }
+}
