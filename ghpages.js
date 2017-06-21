@@ -2,28 +2,29 @@ var fs = require('fs');
 var simpleGit = require('simple-git')();
 
 var commitHash;
+var file;
 
 // create a deploy dir in memory
-fs.readFile('./index.html', 'utf8', (err, data) => {
-	console.log(data);
-	simpleGit
-		.branch((err,branches) => {
-			commitHash = branches.branches.master.commit;
+fs.readFile('./indexTpl.html', 'utf8', (err, data) => {
+	file = data;
+	// simpleGit
+	// 	.branch((err,branches) => {
+	// 		commitHash = branches.branches.master.commit;
 
-			if (!~branches.all.indexOf('gh-pages')) {
-				simpleGit.checkoutLocalBranch('gh-pages');
-			} else {
-				simpleGit.checkout('gh-pages');
-			}
-		})
-		// only if gh-pages exists in remote, pull it
-		.pull('origin', 'gh-pages');
+	// 		if (!~branches.all.indexOf('gh-pages')) {
+	// 			simpleGit.checkoutLocalBranch('gh-pages');
+	// 		} else {
+	// 			simpleGit.checkout('gh-pages');
+	// 		}
+	// 	})
+	// 	// only if gh-pages exists in remote, pull it
+	// 	.pull('origin', 'gh-pages');
 
 	fs.writeFile('./index.html', data, () => {
 		simpleGit
-			.add('./*')
+			.add('.')
 			.commit('Redeploy for commit ' + commitHash + ' to master')
-			.push('origin', 'gh-pages', { '--no-verify': null });
+			// .push('origin', 'gh-pages', { '--no-verify': null });
 		
 	})
 })
