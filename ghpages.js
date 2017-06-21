@@ -17,7 +17,7 @@ fs.readFile('./indexTpl.html', 'utf8', (err, data) => {
 		// 		simpleGit.checkout('gh-pages');
 		// 	}
 		// })
-		.checkout('gh-pages');
+		.checkout('gh-pages')
 		// only if gh-pages exists in remote, pull it
 		.pull('origin', 'gh-pages');
 
