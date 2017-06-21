@@ -14,12 +14,13 @@ simpleGit
 			simpleGit.checkout('gh-pages');
 		}
 	})
-	.pull('origin', 'gh-pages', () => {
-		// delete files
+	// only if gh-pages exists in remote, pull it
+	// .pull('origin', 'gh-pages', () => {
+	// 	// delete files
 
-		// add files
+	// 	// add files
 
-	})
+	// })
 	.add('.')
 	.commit('Redeploy for commit ' + commitHash + ' to master')
 	// push to origin/gh-pages
