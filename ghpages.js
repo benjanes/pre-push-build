@@ -5,6 +5,7 @@ var commitHash;
 
 // create a deploy dir in memory
 fs.readFile('./index.html', 'utf8', (err, data) => {
+	console.log(data);
 	simpleGit
 		.branch((err,branches) => {
 			commitHash = branches.branches.master.commit;
@@ -16,18 +17,15 @@ fs.readFile('./index.html', 'utf8', (err, data) => {
 			}
 		})
 		// only if gh-pages exists in remote, pull it
-		.pull('origin', 'gh-pages', () => {
-			// delete files
-			// add files
-			fs.writeFile('./index.html', data, () => {
-				simpleGit
-					.add('.')
-					.commit('Redeploy for commit ' + commitHash + ' to master')
-					.push('origin', 'gh-pages', { '--no-verify': null });
-				
-			})
+		.pull('origin', 'gh-pages');
 
-		})
+	fs.writeFile('./index.html', data, () => {
+		simpleGit
+			.add('./*')
+			.commit('Redeploy for commit ' + commitHash + ' to master')
+			.push('origin', 'gh-pages', { '--no-verify': null });
+		
+	})
 })
 
 
