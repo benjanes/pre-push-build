@@ -7,20 +7,23 @@ var file;
 // create a deploy dir in memory
 fs.readFile('./indexTpl.html', 'utf8', (err, data) => {
 	file = data;
-	// simpleGit
-	// 	.branch((err,branches) => {
-	// 		commitHash = branches.branches.master.commit;
+	simpleGit
+		// .branch((err,branches) => {
+		// 	commitHash = branches.branches.master.commit;
 
-	// 		if (!~branches.all.indexOf('gh-pages')) {
-	// 			simpleGit.checkoutLocalBranch('gh-pages');
-	// 		} else {
-	// 			simpleGit.checkout('gh-pages');
-	// 		}
-	// 	})
-	// 	// only if gh-pages exists in remote, pull it
-	// 	.pull('origin', 'gh-pages');
+		// 	if (!~branches.all.indexOf('gh-pages')) {
+		// 		simpleGit.checkoutLocalBranch('gh-pages');
+		// 	} else {
+		// 		simpleGit.checkout('gh-pages');
+		// 	}
+		// })
+		.checkout('gh-pages');
+		// only if gh-pages exists in remote, pull it
+		.pull('origin', 'gh-pages');
 
-	fs.writeFile('./index.html', data, () => {
+	fs.writeFile('./index.html', file, () => {
+		console.log(file);
+
 		simpleGit
 			.add('.')
 			.commit('Redeploy for commit ' + commitHash + ' to master')
