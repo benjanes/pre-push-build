@@ -20,11 +20,11 @@ fs.readFile('./indexTpl.html', 'utf8', (err, data) => {
 		.checkout('gh-pages', () => {
 			
 			fs.writeFile('./index.html', file, () => {
-				console.log(file);
+				// console.log(file);
 
-				// simpleGit
-				// 	.add('.')
-				// 	.commit('Redeploy for commit ' + commitHash + ' to master')
+				simpleGit
+					.add('.')
+					.commit('Redeploy for commit '/* + commitHash*/ + ' to master')
 					// .push('origin', 'gh-pages', { '--no-verify': null });
 				
 			})
