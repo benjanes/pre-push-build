@@ -36,8 +36,8 @@ function writeToGHPages(commitHash, file) {
 			simpleGit
 				.add('.')
 				.commit('Redeploy for commit ' + commitHash + ' to master')
-				.push('origin', 'gh-pages', { '--no-verify': null });
-			
+				.push('origin', 'gh-pages', { '--no-verify': null })
+				.checkout('master');
 		});
 	}
 }
