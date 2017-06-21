@@ -4,16 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node ghpages.js && exit 0",
-    "ghpages": "node ghpages.js"
+    "prepush": "node ghpages.js && exit 0"
   },
-  "pre-push": [
-    "test"
-  ],
   "author": "Ben Janes",
   "license": "ISC",
   "devDependencies": {
-    "pre-push": "^0.1.1",
+    "husky": "^0.13.4",
     "simple-git": "^1.73.0"
   }
 }
